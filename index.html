@@ -521,7 +521,7 @@ function list(a){return a.length<2?a.join(''):a.slice(0,-1).join(', ')+' e '+a[a
 function esc(v){return v.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 var last='';
 function build(){var need=vals('need'),biz=vals('biz')[0],when=vals('when')[0],nm=nome.value.trim();
- var parts=['Olá! '+(nm?'Meu nome é '+nm+' e ':'')+'vim pelo site da Norteia.'];
+ var parts=['Olá! '+(nm?'Meu nome é '+nm+' e vim':'Vim')+' pelo site da Norteia.'];
  parts.push(need.length?'Quero um orçamento para: '+list(need).toLowerCase().replace(/\bia\b/g,'IA')+'.':'Quero entender qual solução combina com o meu negócio.');
  if(biz)parts.push('Meu negócio é da área de '+biz.toLowerCase()+'.');
  if(when)parts.push('Prazo: '+when.toLowerCase()+'.');
