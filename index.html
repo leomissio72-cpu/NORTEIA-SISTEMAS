@@ -37,6 +37,9 @@ h1,h2,h3{font-family:Cinzel,Georgia,serif;font-weight:700;line-height:1.15;margi
 .nav{display:flex;gap:28px;align-items:center}
 .nav a{color:var(--mist);text-decoration:none;font-size:15px}
 .nav a:hover{color:#fff}
+.menu{display:none;flex-direction:column;justify-content:center;gap:5px;width:48px;height:48px;border-radius:12px;background:rgba(244,238,227,.08);border:1px solid rgba(244,238,227,.2);cursor:pointer;padding:0 13px}
+.menu span{display:block;height:2px;background:var(--ivory);border-radius:2px;transition:transform .25s,opacity .25s}
+.top.open .menu span:nth-child(1){transform:translateY(7px) rotate(45deg)}.top.open .menu span:nth-child(2){opacity:0}.top.open .menu span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .btn{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--deep);font-weight:600;text-decoration:none;padding:15px 26px;border-radius:999px;font-size:16px;transition:background .2s}
 .btn:hover{background:#FFE27A}
 .btn svg{width:20px;height:20px}
@@ -215,9 +218,17 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 /* responsive */
 @media (min-width:901px) and (max-width:1100px){.svc{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:900px){
- .nav a:not(.btn){display:none}
+ .menu{display:flex}
+ .nav{position:absolute;top:76px;left:16px;right:16px;flex-direction:column;align-items:stretch;gap:4px;padding:14px;border-radius:16px;background:rgba(6,24,42,.96);backdrop-filter:blur(8px);border:1px solid rgba(245,201,58,.25);box-shadow:0 20px 50px rgba(0,0,0,.4);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .25s,transform .25s,visibility .25s}
+ .top.open .nav{opacity:1;visibility:visible;transform:none}
+ .nav a:not(.btn){padding:14px 10px;font-size:17px;color:var(--ivory);border-bottom:1px solid rgba(201,214,226,.12)}
+ .nav .btn{justify-content:center;margin-top:10px;padding:15px 18px;font-size:16px}
+ .filters{flex-wrap:nowrap;overflow-x:auto;margin:-24px -24px 28px;padding:0 24px 4px;scrollbar-width:none}
+ .filters::-webkit-scrollbar{display:none}
+ .filters button{flex:none}
  .hero .wrap{grid-template-columns:1fr;padding-top:120px;text-align:left}
- .compass{width:min(340px,78vw);order:-1}
+ .compass{width:min(300px,72vw);margin-top:8px}
+ .hero .wrap{gap:24px;padding-bottom:56px}
  section{padding:80px 0}
  .svc{grid-template-columns:1fr}
  .svc div{padding:28px 0}
@@ -233,14 +244,15 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
  ol.steps li::before{margin:0;grid-row:span 2}
  .why .wrap{grid-template-columns:1fr;gap:32px}
 }
-@media (max-width:520px){.nav .btn{display:none}body{font-size:16px}}
+@media (max-width:520px){body{font-size:16px}}
 </style>
 </head>
 <body>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#inicio" aria-label="Norteia Sistemas, início"><svg viewBox="18 18 164 164"  aria-hidden="true" focusable="false"><defs><linearGradient id="bc1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#AFC2D2"/></linearGradient><linearGradient id="bc2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DCE6EE"/><stop offset="1" stop-color="#7F97AB"/></linearGradient><linearGradient id="bd1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE27A"/><stop offset="1" stop-color="#E8B400"/></linearGradient><linearGradient id="bd2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F5C93A"/><stop offset="1" stop-color="#B98A00"/></linearGradient></defs><path d="M100 100 L100.0 20.0 L91.5 91.5 Z" fill="url(#bc1)"/><path d="M100 100 L100.0 20.0 L108.5 91.5 Z" fill="url(#bc2)"/><path d="M100 100 L180.0 100.0 L108.5 91.5 Z" fill="url(#bc1)"/><path d="M100 100 L180.0 100.0 L108.5 108.5 Z" fill="url(#bc2)"/><path d="M100 100 L100.0 180.0 L108.5 108.5 Z" fill="url(#bc1)"/><path d="M100 100 L100.0 180.0 L91.5 108.5 Z" fill="url(#bc2)"/><path d="M100 100 L20.0 100.0 L91.5 108.5 Z" fill="url(#bc1)"/><path d="M100 100 L20.0 100.0 L91.5 91.5 Z" fill="url(#bc2)"/><path d="M100 100 L146.7 53.3 L100.0 87.0 Z" fill="url(#bd1)"/><path d="M100 100 L146.7 53.3 L113.0 100.0 Z" fill="url(#bd2)"/><path d="M100 100 L146.7 146.7 L113.0 100.0 Z" fill="url(#bd1)"/><path d="M100 100 L146.7 146.7 L100.0 113.0 Z" fill="url(#bd2)"/><path d="M100 100 L53.3 146.7 L100.0 113.0 Z" fill="url(#bd1)"/><path d="M100 100 L53.3 146.7 L87.0 100.0 Z" fill="url(#bd2)"/><path d="M100 100 L53.3 53.3 L87.0 100.0 Z" fill="url(#bd1)"/><path d="M100 100 L53.3 53.3 L100.0 87.0 Z" fill="url(#bd2)"/></svg><span><b>NORTEIA</b><small>SISTEMAS</small></span></a>
-    <nav class="nav" aria-label="Principal">
+    <button class="menu" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    <nav class="nav" id="nav" aria-label="Principal">
       <a href="#servicos">Serviços</a><a href="#trabalhos">Trabalhos</a><a href="#como">Como funciona</a>
       <a class="btn" href="https://wa.me/5511966456055?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener">Pedir orçamento</a>
     </nav>
@@ -384,6 +396,9 @@ var spin=document.querySelector('.compass .spin'),cp=document.querySelector('.co
 function f(){tick=false;var y=window.scrollY,H=hero.offsetHeight;if(y>H*1.2)return;var p=y/H;
 spin.style.transform='rotate('+(Math.sin(p*3)*18)+'deg)';cp.style.transform='translateY('+(y*.18)+'px)';hero.style.setProperty('--bx',(72-p*14)+'%');}
 window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(f)}},{passive:true});})();
+(function(){var t=document.querySelector('.top'),m=t.querySelector('.menu');
+m.addEventListener('click',function(){var o=t.classList.toggle('open');m.setAttribute('aria-expanded',o);m.setAttribute('aria-label',o?'Fechar menu':'Abrir menu')});
+t.querySelectorAll('.nav a').forEach(function(a){a.addEventListener('click',function(){t.classList.remove('open');m.setAttribute('aria-expanded','false')})});})();
 (function(){var bs=document.querySelectorAll('.filters button'),cs=document.querySelectorAll('.card');
 bs.forEach(function(b){b.addEventListener('click',function(){var f=b.dataset.f;
 bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
