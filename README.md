@@ -4,4 +4,4 @@ Site institucional da Norteia Sistemas: sites, sistemas web, agentes de IA, inte
 
 O site é um único arquivo (`index.html`), sem dependências de build. Para publicar, basta servir este arquivo (por exemplo, pelo GitHub Pages).
 
-Antes de divulgar, troque `55SEUNUMERO` pelo número de WhatsApp com DDI e DDD (ex.: `5511999999999`).
+Contato: WhatsApp (11) 96645-6055.
