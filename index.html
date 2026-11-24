@@ -250,15 +250,35 @@ footer a{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
  .brand .logo{animation-duration:90s}.endrose{animation-duration:90s}.fb{animation-duration:120s}
  .mini,.route .dot{transition:none}
 }
+
+/* Menu do celular */
+.menu-btn{display:none;width:44px;height:44px;margin-left:6px;border:0;border-radius:999px;background:transparent;color:var(--ivory,#F4EEE3);cursor:pointer;place-items:center}
+.menu-btn span,.menu-btn span::before,.menu-btn span::after{display:block;width:22px;height:2px;background:currentColor;border-radius:2px;transition:transform .25s,opacity .2s;position:relative}
+.menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0}
+.menu-btn span::before{top:-7px}.menu-btn span::after{top:7px}
+.top.open .menu-btn span{background:transparent}
+.top.open .menu-btn span::before{transform:translateY(7px) rotate(45deg)}
+.top.open .menu-btn span::after{transform:translateY(-7px) rotate(-45deg)}
+.menu-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.mpanel{position:fixed;left:0;right:0;top:calc(64px + env(safe-area-inset-top,0px));bottom:0;z-index:29;background:rgba(6,24,42,.98);padding:18px max(20px,env(safe-area-inset-left,0px)) calc(28px + env(safe-area-inset-bottom,0px));overflow-y:auto;display:flex;flex-direction:column;gap:4px}
+.mpanel[hidden]{display:none}
+.mpanel a{display:block;padding:14px 4px;font-size:20px;color:#F4EEE3;text-decoration:none;border-bottom:1px solid rgba(201,214,226,.14);font-family:Sora,system-ui,sans-serif}
+.mpanel a[aria-current]{color:#F5C93A}
+.mpanel .btn{margin-top:18px;border-bottom:0;text-align:center;font-size:16px;padding:0 20px;min-height:52px;display:flex;color:#06182A}
+.mpanel .google{display:none}
+@media (max-width:520px){.top nav .btn{display:none}}
+@media (max-width:900px){.menu-btn{display:grid}.top.open{background:rgba(6,24,42,.98)}}
+@media (min-width:901px){.mpanel{display:none!important}}
 </style>
 </head>
 <body>
 <header class="top" id="top">
   <div class="wrap">
     <a class="brand" href="#inicio" aria-label="Norteia Sistemas, início"><svg class="logo" viewBox="18 18 164 164" aria-hidden="true" focusable="false"><g transform="rotate(0 100 100)"><path d="M100 100L146.7 53.3L100 87Z" fill="#FFE27A"/><path d="M100 100L146.7 53.3L113 100Z" fill="#C99A00"/></g><g transform="rotate(90 100 100)"><path d="M100 100L146.7 53.3L100 87Z" fill="#FFE27A"/><path d="M100 100L146.7 53.3L113 100Z" fill="#C99A00"/></g><g transform="rotate(180 100 100)"><path d="M100 100L146.7 53.3L100 87Z" fill="#FFE27A"/><path d="M100 100L146.7 53.3L113 100Z" fill="#C99A00"/></g><g transform="rotate(270 100 100)"><path d="M100 100L146.7 53.3L100 87Z" fill="#FFE27A"/><path d="M100 100L146.7 53.3L113 100Z" fill="#C99A00"/></g><g transform="rotate(0 100 100)"><path d="M100 100L100 20L91.5 91.5Z" fill="#FFFFFF"/><path d="M100 100L100 20L108.5 91.5Z" fill="#9FB2C4"/></g><g transform="rotate(90 100 100)"><path d="M100 100L100 20L91.5 91.5Z" fill="#FFFFFF"/><path d="M100 100L100 20L108.5 91.5Z" fill="#9FB2C4"/></g><g transform="rotate(180 100 100)"><path d="M100 100L100 20L91.5 91.5Z" fill="#FFFFFF"/><path d="M100 100L100 20L108.5 91.5Z" fill="#9FB2C4"/></g><g transform="rotate(270 100 100)"><path d="M100 100L100 20L91.5 91.5Z" fill="#FFFFFF"/><path d="M100 100L100 20L108.5 91.5Z" fill="#9FB2C4"/></g></svg><span><b>NORTEIA</b><small>SISTEMAS</small></span></a>
-    <nav aria-label="Principal"><a href="#servicos">Serviços</a><a href="#como">Como funciona</a><a href="#perguntas">Perguntas</a><a href="#voyage">Trabalhos</a><a href="/experiencia/">Experiência</a><a class="btn" href="#monte">Montar meu orçamento</a></nav>
+    <nav aria-label="Principal"><a href="#servicos">Serviços</a><a href="#como">Como funciona</a><a href="#perguntas">Perguntas</a><a href="#voyage">Trabalhos</a><a href="/experiencia/">Experiência</a><a class="btn" href="#monte">Montar meu orçamento</a><button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Abrir menu"><span></span></button></nav>
   </div>
 </header>
+<div class="mpanel" id="mnav" hidden><a href="#servicos">Serviços</a><a href="#como">Como funciona</a><a href="#perguntas">Perguntas</a><a href="#voyage">Trabalhos</a><a href="/experiencia/">Experiência</a><a class="google" href="#" target="_blank" rel="noopener">Avalie no Google</a><a class="btn" href="#monte">Montar meu orçamento</a></div>
 <main>
 <section class="hero" id="inicio" aria-labelledby="t">
   <div class="stage" id="stage">
@@ -616,6 +636,14 @@ function run(){
  frame();window.__vf=function(){return f};
 }
 })();
+</script>
+<script>
+(()=>{const top=document.querySelector('.top'),b=top&&top.querySelector('.menu-btn'),p=document.getElementById('mnav');if(!b||!p)return;
+const set=o=>{p.hidden=!o;top.classList.toggle('open',o);b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Fechar menu':'Abrir menu');document.documentElement.style.overflow=o?'hidden':''};
+b.addEventListener('click',()=>set(p.hidden));
+p.addEventListener('click',e=>{if(e.target.closest('a'))set(false)});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!p.hidden){set(false);b.focus()}});
+matchMedia('(min-width:901px)').addEventListener('change',e=>{if(e.matches)set(false)});})();
 </script>
 </body>
 </html>
